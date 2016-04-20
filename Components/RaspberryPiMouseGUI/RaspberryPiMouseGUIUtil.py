@@ -354,6 +354,7 @@ class Window(QtGui.QWidget):
 	# @param comp RTC
 	def __init__(self, comp):
 		super(Window, self).__init__()
+		self.setWindowTitle(u"ラズパイマウス操作GUI")
 
 		self.comp = comp
 		self.RenderArea = RenderArea()

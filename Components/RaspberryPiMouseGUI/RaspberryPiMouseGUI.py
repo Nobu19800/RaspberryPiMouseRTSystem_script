@@ -61,10 +61,10 @@ class DataListener(OpenRTM_aist.ConnectorDataListenerT):
 		self.py = 0
 		self.rot = 0
 
-                self.start_px = 0
-                self.start_py = 0
-                self.start_rot = 0
-                
+		self.start_px = 0
+		self.start_py = 0
+		self.start_rot = 0
+
 		self.start_flag = False
 		self.tm = time.time()
 		
@@ -85,8 +85,8 @@ class DataListener(OpenRTM_aist.ConnectorDataListenerT):
 		self.py = y
 		self.rot = r
 		self.start_px = x
-                self.start_py = y
-                self.start_rot = r
+		self.start_py = y
+		self.start_rot = r
 		del guard
 		
 	def setPosition(self, x, y, r):
@@ -102,36 +102,34 @@ class DataListener(OpenRTM_aist.ConnectorDataListenerT):
 		del guard
 		
 	def reset(self):
-                guard = OpenRTM_aist.ScopedLock(self._mutex)
-                self.start_flag = False
-                del guard
+		guard = OpenRTM_aist.ScopedLock(self._mutex)
+		self.start_flag = False
+		del guard
 	def __call__(self, info, cdrdata):
-                
-                guard = OpenRTM_aist.ScopedLock(self._mutex)
-                if self.start_flag:
-                        
-                        
-                        data = OpenRTM_aist.ConnectorDataListenerT.__call__(self, info, cdrdata, RTC.TimedVelocity2D(RTC.Time(0,0),RTC.Velocity2D(0,0,0)))
-                        
-                        tm = time.time()
-                        dt = tm - self.tm
-                        
-                        self.tm = tm
+		
+		guard = OpenRTM_aist.ScopedLock(self._mutex)
+		if self.start_flag:
+			data = OpenRTM_aist.ConnectorDataListenerT.__call__(self, info, cdrdata, RTC.TimedVelocity2D(RTC.Time(0,0),RTC.Velocity2D(0,0,0)))
 
-                        if dt < 0.5:
-                                lx = data.data.vx*dt
-                                self.px = self.px + lx*math.cos(self.rot)
-                                self.py = self.py + lx*math.sin(self.rot)
-                                self.rot = self.rot + data.data.va*dt
-                          
+			tm = time.time()
+			dt = tm - self.tm
+
+			self.tm = tm
+
+			if dt < 0.5:
+				lx = data.data.vx*dt
+				self.px = self.px + lx*math.cos(self.rot)
+				self.py = self.py + lx*math.sin(self.rot)
+				self.rot = self.rot + data.data.va*dt
+
 
                         #print self.px,self.py,self.rot
-                        
-                else:
-                        self.tm = time.time()
-                        self.start_flag = True
-                del guard
-		
+
+			else:
+				self.tm = time.time()
+				self.start_flag = True
+		del guard
+
 # </rtc-template>
 
 ##
@@ -193,7 +191,7 @@ class RaspberryPiMouseGUI(OpenRTM_aist.DataFlowComponentBase):
 		 - Type: RTC::TimedPoint2D
 		"""
 		self._target_positionOut = OpenRTM_aist.OutPort("target_position", self._d_target_position)
-                self._d_update_pose = RTC.TimedPose2D(RTC.Time(0,0),RTC.Pose2D(RTC.Point2D(0,0),0))
+		self._d_update_pose = RTC.TimedPose2D(RTC.Time(0,0),RTC.Pose2D(RTC.Point2D(0,0),0))
 		"""
 		ラズパイマウスの位置を設定する
 		 - Type: RTC::TimedPose2D
@@ -219,23 +217,23 @@ class RaspberryPiMouseGUI(OpenRTM_aist.DataFlowComponentBase):
 		self._target_velocityOut.write()
 
 	def setRotation(self, r):
-                self.dataListener.setRotation(r)
+		self.dataListener.setRotation(r)
 
 	def getCurrentPosition(self):
-                
-                if self._current_poseIn.isNew():
-                        data = self._current_poseIn.read()
-                        #print data.data.position.x, data.data.position.y, data.data.heading
-                        self.dataListener.setPosition(data.data.position.x, data.data.position.y, data.data.heading)
+		
+		if self._current_poseIn.isNew():
+			data = self._current_poseIn.read()
+			#print data.data.position.x, data.data.position.y, data.data.heading
+			self.dataListener.setPosition(data.data.position.x, data.data.position.y, data.data.heading)
 		return self.dataListener.getPositon()
 	
 	
 	def setStartPosition(self, x, y, r):
-                self._d_update_pose.data.position.x = x
-                self._d_update_pose.data.position.y = y
-                self._d_update_pose.data.heading = r
-                self._update_poseOut.write()
-                
+		self._d_update_pose.data.position.x = x
+		self._d_update_pose.data.position.y = y
+		self._d_update_pose.data.heading = r
+		self._update_poseOut.write()
+		
 		self.dataListener.setStartPosition(x, y, r)
 
 	def getSensorDataPort(self):
@@ -248,7 +246,7 @@ class RaspberryPiMouseGUI(OpenRTM_aist.DataFlowComponentBase):
 
         def resetDataListener(self):
                 self.dataListener.reset()
-	
+
 
 
 		
@@ -336,11 +334,11 @@ class RaspberryPiMouseGUI(OpenRTM_aist.DataFlowComponentBase):
 		#
 		#
 	def onActivated(self, ec_id):
-                
-                x = self.dataListener.start_px
-                y = self.dataListener.start_py
-                r = self.dataListener.start_rot
-                self.setStartPosition(x,y,r)
+		
+		x = self.dataListener.start_px
+		y = self.dataListener.start_py
+		r = self.dataListener.start_rot
+		self.setStartPosition(x,y,r)
 		return RTC.RTC_OK
 	
 		##
