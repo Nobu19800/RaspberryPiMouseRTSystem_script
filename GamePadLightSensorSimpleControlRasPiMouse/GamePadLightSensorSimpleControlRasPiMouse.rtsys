@@ -83,7 +83,7 @@
     </rts:Components>
     <rts:Components rts:activeConfigurationSet="default" rts:compositeType="None" rts:id="RTC:AIST:Controller:RaspberryPiMouseController_DistanceSensor:1.0.0" rts:instanceName="RaspberryPiMouseController_DistanceSensor0" rts:isRequired="true" rts:pathUri="localhost/RaspberryPiMouseController_DistanceSensor0.rtc" rtsExt:visible="true">
         <rts:DataPorts rts:name="target_velocity_in" rtsExt:visible="true"/>
-        <rts:DataPorts rts:name="ir_sensor" rtsExt:visible="true"/>
+        <rts:DataPorts rts:name="distance_sensor" rtsExt:visible="true"/>
         <rts:DataPorts rts:name="target_velocity_out" rtsExt:visible="true"/>
         <rts:ConfigurationSets rts:id="default">
             <rts:ConfigurationData rts:data="0.01" rts:name="stop_velocity"/>

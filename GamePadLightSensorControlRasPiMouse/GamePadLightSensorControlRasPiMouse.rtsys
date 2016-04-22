@@ -113,7 +113,7 @@
     </rts:Components>
     <rts:Components rts:activeConfigurationSet="default" rts:compositeType="None" rts:id="RTC:AIST:Controller:RaspberryPiMouseController_DistanceSensor:1.0.0" rts:instanceName="RaspberryPiMouseController_DistanceSensor0" rts:isRequired="true" rts:pathUri="localhost/RaspberryPiMouseController_DistanceSensor0.rtc" rtsExt:visible="true">
         <rts:DataPorts rts:name="target_velocity_in" rtsExt:visible="true"/>
-        <rts:DataPorts rts:name="ir_sensor" rtsExt:visible="true"/>
+        <rts:DataPorts rts:name="distance_sensor" rtsExt:visible="true"/>
         <rts:DataPorts rts:name="target_velocity_out" rtsExt:visible="true"/>
         <rts:ConfigurationSets rts:id="default">
             <rts:ConfigurationData rts:data="0.01" rts:name="stop_velocity"/>
@@ -199,11 +199,11 @@
         <rtsExt:Properties rtsExt:name="dataport.dataflow_type" rtsExt:value="push"/>
         <rtsExt:Properties rtsExt:name="dataport.serializer.cdr.endian" rtsExt:value="little,big"/>
     </rts:DataPortConnectors>
-    <rts:DataPortConnectors rts:connectorId="01af9813-20be-4885-a299-ac43d546d591" rts:dataType="IDL:RTC/TimedShortSeq:1.0" rts:dataflowType="push" rts:interfaceType="corba_cdr" rts:name="RaspberryPiMouseRTC0.ir_sensor_out_RaspberryPiMouseController_DistanceSensor0.ir_sensor" rts:pushInterval="0.0" rts:subscriptionType="flush" rtsExt:visible="true">
+    <rts:DataPortConnectors rts:connectorId="01af9813-20be-4885-a299-ac43d546d591" rts:dataType="IDL:RTC/TimedShortSeq:1.0" rts:dataflowType="push" rts:interfaceType="corba_cdr" rts:name="RaspberryPiMouseRTC0.ir_sensor_out_RaspberryPiMouseController_DistanceSensor0.distance_sensor" rts:pushInterval="0.0" rts:subscriptionType="flush" rtsExt:visible="true">
         <rts:sourceDataPort rts:componentId="RTC:Meijo Univ.:MobileRobot:RaspberryPiMouseRTC:1.0.0" rts:instanceName="RaspberryPiMouseRTC0" rts:portName="RaspberryPiMouseRTC0.ir_sensor_out">
             <rtsExt:Properties rtsExt:name="COMPONENT_PATH_ID" rtsExt:value="localhost/RaspberryPiMouseRTC0.rtc"/>
         </rts:sourceDataPort>
-        <rts:targetDataPort rts:componentId="RTC:AIST:Controller:RaspberryPiMouseController_DistanceSensor:1.0.0" rts:instanceName="RaspberryPiMouseController_DistanceSensor0" rts:portName="RaspberryPiMouseController_DistanceSensor0.ir_sensor">
+        <rts:targetDataPort rts:componentId="RTC:AIST:Controller:RaspberryPiMouseController_DistanceSensor:1.0.0" rts:instanceName="RaspberryPiMouseController_DistanceSensor0" rts:portName="RaspberryPiMouseController_DistanceSensor0.distance_sensor">
             <rtsExt:Properties rtsExt:name="COMPONENT_PATH_ID" rtsExt:value="localhost/RaspberryPiMouseController_DistanceSensor0.rtc"/>
         </rts:targetDataPort>
         <rtsExt:Properties rtsExt:name="dataport.publisher.push_policy" rtsExt:value="all"/>
